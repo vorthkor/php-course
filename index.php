@@ -21,31 +21,44 @@
             $products['iPhone']=1000;
             $products['Toaster']=75;
 
+            $taxRate=0.0825;
+
+            function tax_calc($amount,$tax){
+                $calculate_tax = $amount*$tax;
+                $amount = round($amount+$calculate_tax,2);
+                return $amount;
+            }
+
             foreach($products as $key => $value){
-              echo "<p>The ".$key." costs ".$value."</p>";
+                $costWithTax = tax_calc($value,$taxRate);
+                echo "<p>The ".$key." costs ".$costWithTax." with tax</p>";
             }
 
             echo "<h2>Items you can afford</h2>";
 
             foreach($products as $key => $value){
-                if($value <= $credit){
+                $costWithTax = tax_calc($value,$taxRate);
+                if($costWithTax <= $credit){
                     echo "<p> ".$key." </p>";
                 }
             }
 
-            $amount=800;
-            $taxRate=0.0825;
-            $addedTax=$amount*$taxRate; // amount = 800, tax = .0825
-            echo $addedTax;
+            //$amount=800;
+            //$addedTax=$amount*$taxRate; // amount = 800, tax = .0825
+            //echo $addedTax;
 
-            function tax_calc($amount,$tax){
-              $calculate_tax = $amount*$tax;
-              $amount = round($amount+$calculate_tax,2);
-              return $amount;
-            }
-            echo "<br>";
+            
+            //echo "<br>";
 
-            echo tax_calc(750,0.223);
+            //echo tax_calc(750,0.223);
+            //----------------------------------------------------
+
+            //Next Steps:
+
+            //Learn how to use a content management system (like WordPress or Drupal).
+            //Learn MySQL to add a database to this.
+            //Try using a live server (rather than a local one).
+
         ?>
     </body>
 </html>
